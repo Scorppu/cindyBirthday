@@ -28,11 +28,11 @@ const initialPages: BookPageData[] = [
     // texture: '/textures/enchanting-table.png',
     content: (
       <section className="cover-content">
-        <p className="chapter-label">A SMALL BOOK FOR</p>
-        <h1>Wanderers<br />&amp; Dreamers</h1>
+        <p className="chapter-label">A BOOK FOR</p>
+        <h1>Dreamers</h1>
         <div className="vine-divider"><span>✦</span></div>
-        <p className="cover-intro">A collection of little discoveries<br />from somewhere between here and there.</p>
-        <p className="author-line">Written by <strong>YOU</strong></p>
+        <p className="cover-intro">Little moments<br />for you.</p>
+        <p className="author-line">With love</p>
       </section>
     ),
   },
@@ -89,6 +89,27 @@ type BookPageProps = {
 
 /** Reusable page wrapper. Supply anything as `children` for a custom page. */
 function BookPage({ children, pageNumber, totalPages, texture }: BookPageProps) {
+  useEffect(() => {
+    const page = document.querySelector<HTMLElement>('.paper-page');
+    const content = page?.querySelector<HTMLElement>('.page-content');
+    if (!page || !content) return;
+
+    const checkOverflow = () => {
+      const hasOverflow = content.scrollHeight > content.clientHeight || content.scrollWidth > content.clientWidth;
+      if (hasOverflow) {
+        console.warn(`Page ${pageNumber} has too much content. Move the extra content to a new page.`);
+      }
+    };
+
+    if (!import.meta.env.DEV) return;
+
+    const observer = new ResizeObserver(checkOverflow);
+    observer.observe(content);
+    void document.fonts.ready.then(checkOverflow);
+    checkOverflow();
+    return () => observer.disconnect();
+  }, [pageNumber, totalPages, children]);
+
   return (
     <article className="paper-page">
       <img className="book-art" src={BOOK_TEXTURE} alt="" aria-hidden="true" />
