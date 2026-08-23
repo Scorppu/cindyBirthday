@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { useEffect, useState, type ReactNode } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import './styles.css';
 
 // Put a background image in public/backgrounds/ and set this path.
@@ -12,6 +12,8 @@ export type BookPageData = {
   id: string;
   label: string;
   texture?: string;
+  /** Optional full-screen background used while this page is open. */
+  background?: string;
   content: ReactNode;
 };
 
@@ -40,6 +42,7 @@ const initialPages: BookPageData[] = [
     id: 'chapter-one',
     label: 'Chapter I',
     // texture: '/textures/paper-grid.png',
+    // background: '/backgrounds/chapter-one.png',
     content: (
       <section className="chapter-content">
         <p className="chapter-label">CHAPTER I</p>
@@ -54,6 +57,7 @@ const initialPages: BookPageData[] = [
   {
     id: 'chapter-two',
     label: 'Chapter II',
+    // background: '/backgrounds/chapter-two.png',
     content: (
       <section className="chapter-content">
         <p className="chapter-label">CHAPTER II</p>
@@ -108,6 +112,7 @@ function BookPage({ children, pageNumber, totalPages, texture }: BookPageProps) 
 function App() {
   const [pages] = useState<BookPageData[]>(initialPages);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const [isBookVisible, setIsBookVisible] = useState(true);
   const page = pages[currentPage];
 
   const previousPage = () => setCurrentPage(index => Math.max(0, index - 1));
@@ -123,12 +128,23 @@ function App() {
   }, [pages.length]);
 
   return (
-    <main className="app-shell" style={BACKGROUND_IMAGE ? { backgroundImage: `url(${BACKGROUND_IMAGE})` } : undefined}>
+    <main
+      className={`app-shell ${isBookVisible ? '' : 'book-hidden'}`}
+      style={{ backgroundImage: `url(${page.background || BACKGROUND_IMAGE})` }}
+    >
       <div className="ambient-light" />
+      <button
+        className="book-toggle"
+        onClick={() => setIsBookVisible(visible => !visible)}
+        aria-pressed={isBookVisible}
+        aria-label={isBookVisible ? 'Hide book' : 'Show book'}
+        title={isBookVisible ? 'Hide book' : 'Show book'}
+      >
+        {isBookVisible ? <EyeOff size={20} /> : <Eye size={20} />}
+      </button>
       <section className="book-stage" aria-label="Book viewer">
-        <div className="book-shadow" />
         <div className="book-spine" />
-        <BookPage pageNumber={currentPage + 1} totalPages={pages.length} texture={page.texture}>{page.content}</BookPage>
+        {isBookVisible && <BookPage pageNumber={currentPage + 1} totalPages={pages.length} texture={page.texture}>{page.content}</BookPage>}
       </section>
 
       <nav className="page-navigation" aria-label="Book pages">
