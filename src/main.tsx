@@ -65,21 +65,6 @@ const initialPages: BookPageData[] = [
   },
 ];
 
-type PageArrowProps = {
-  direction: 'previous' | 'next';
-  onClick: () => void;
-  disabled: boolean;
-};
-
-function PageArrow({ direction, onClick, disabled }: PageArrowProps) {
-  const Icon = direction === 'previous' ? ChevronLeft : ChevronRight;
-  return (
-    <button className={`page-arrow ${direction}`} onClick={onClick} disabled={disabled} aria-label={`${direction} page`}>
-      <Icon size={29} strokeWidth={1.5} />
-    </button>
-  );
-}
-
 type BookPageProps = {
   children: ReactNode;
   pageNumber: number;
@@ -143,9 +128,7 @@ function App() {
       <section className="book-stage" aria-label="Book viewer">
         <div className="book-shadow" />
         <div className="book-spine" />
-        <PageArrow direction="previous" onClick={previousPage} disabled={currentPage === 0} />
         <BookPage pageNumber={currentPage + 1} totalPages={pages.length} texture={page.texture}>{page.content}</BookPage>
-        <PageArrow direction="next" onClick={nextPage} disabled={currentPage === pages.length - 1} />
       </section>
 
       <nav className="page-navigation" aria-label="Book pages">
