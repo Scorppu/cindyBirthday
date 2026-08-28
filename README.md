@@ -35,21 +35,29 @@ Open the local URL shown by Vite (normally `http://localhost:5173`).
 
 ## Customizing the book
 
-Page content is defined in [`src/main.jsx`](src/main.jsx) in the `initialPages` array. Add, remove, or rearrange page objects to change the book. Each page supports a `label` and JSX `content`.
+Page content is defined in [`src/book-data.tsx`](src/book-data.tsx) in the `spreads` array. Rendering is split into [`src/components/BookViewer.tsx`](src/components/BookViewer.tsx), [`src/components/Page.tsx`](src/components/Page.tsx), and [`src/components/Collage.tsx`](src/components/Collage.tsx).
 
-```jsx
+Each spread can provide its own `backgroundImage`. Pages can also provide a collage of polaroid images:
+
+```tsx
 {
-  id: 'my-page',
-  label: 'A New Chapter',
-  content: <section className="chapter-content">...</section>,
+  id: 'chapter-three',
+  label: 'Chapter III',
+  backgroundImage: '/backgrounds/forest.png',
+  left: {
+    eyebrow: 'CHAPTER III',
+    title: 'A New Memory',
+    body: <p>...</p>,
+    images: [
+      { id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4 },
+      { id: 'trail', src: '/photos/trail.jpg', alt: 'A forest trail', rotation: 3 },
+    ],
+  },
+  right: { body: <p>...</p> },
 }
 ```
 
-Styling for the viewer, pages, controls, and editor lives in [`src/styles.css`](src/styles.css).
-
-## Notes
-
-Edits made through the in-browser **Edit page** control are kept only in the current browser session. To persist content, update `initialPages` in `src/main.jsx`.
+Styling for the viewer, pages, controls, and collage lives in [`src/styles.css`](src/styles.css).
 
 ## License
 

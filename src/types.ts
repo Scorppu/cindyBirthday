@@ -1,0 +1,27 @@
+import type { ReactNode } from 'react'
+
+export type CollageImage = {
+  id: string
+  src: string
+  alt: string
+  rotation?: number
+  className?: string
+}
+
+export type PageContent = {
+  eyebrow?: string
+  title?: ReactNode
+  titleLevel?: 1 | 2
+  body?: ReactNode
+  variant?: 'cover' | 'reading'
+  images?: CollageImage[]
+}
+
+export type Spread = {
+  id: string
+  label: string
+  /** Background shown while this spread is active. */
+  backgroundImage?: string
+  left: PageContent
+  right: PageContent
+}
