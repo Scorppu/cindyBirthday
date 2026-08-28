@@ -49,15 +49,22 @@ Each spread can provide its own `backgroundImage`. Pages can also provide a coll
     title: 'A New Memory',
     body: <p>...</p>,
     images: [
-      { id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4 },
-      { id: 'trail', src: '/photos/trail.jpg', alt: 'A forest trail', rotation: 3 },
+      { id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4, position: { x: '-4px', y: '2px' } },
+      { id: 'trail', src: '/photos/trail.jpg', alt: 'A forest trail', rotation: 3, position: { x: '3px', y: '-2px' } },
     ],
   },
   right: { body: <p>...</p> },
 }
 ```
 
-Styling for the viewer, pages, controls, and collage lives in [`src/styles.css`](src/styles.css).
+Images support optional `rotation` and `position` values. Position offsets accept CSS lengths such as pixels, percentages, or `em` units and are applied relative to the spot assigned by the collage grid:
+
+```tsx
+{ id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4, position: { x: '-4px', y: '2px' } }
+```
+
+Click or keyboard-focus a polaroid to pick it up from the page and inspect it at a larger size. The **×** button, backdrop, or `Escape` puts it back down with a reverse animation.
+
 
 ## License
 

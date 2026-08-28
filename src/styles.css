@@ -288,24 +288,107 @@ button { font: inherit; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 5%;
   width: 100%;
-  max-height: 42%;
+  max-height: 48%;
   margin: .7em auto;
   padding: 2%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .polaroid {
+  position: relative;
   min-width: 0;
   margin: 0;
   padding: 4% 4% 13%;
+  border: 0;
+  border-radius: 0;
   background: #fffdf5;
   box-shadow: 0 5px 8px rgba(62, 38, 20, .3);
-  transform: rotate(var(--rotation, 0deg));
+  color: inherit;
+  cursor: zoom-in;
+  font: inherit;
+  transform: translate(var(--offset-x, 0px), var(--offset-y, 0px)) rotate(var(--rotation, 0deg));
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.polaroid:hover { z-index: 1; box-shadow: 0 8px 12px rgba(62, 38, 20, .38); transform: rotate(0deg) translateY(-3px); }
+.polaroid:hover,
+.polaroid:focus-visible {
+  z-index: 1;
+  box-shadow: 0 8px 12px rgba(62, 38, 20, .38);
+  transform: translate(var(--offset-x, 0px), calc(var(--offset-y, 0px) - 3px)) rotate(0deg);
+}
+.polaroid:focus-visible { outline: 2px solid #8d6543; outline-offset: 3px; }
 .polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+.photo-lightbox {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 10vh 5vw;
+  background: rgba(16, 12, 9, .48);
+  cursor: zoom-out;
+  animation: pickup-dim-in .25s ease both;
+}
+
+.photo-lightbox__content {
+  position: relative;
+  max-width: min(760px, 90vw);
+  max-height: calc(100vh - 20vh);
+  padding: 10px;
+  background: #fffdf5;
+  box-shadow: 0 24px 55px rgba(0, 0, 0, .5), 0 4px 10px rgba(0, 0, 0, .25);
+  cursor: default;
+  animation: photo-pickup .55s cubic-bezier(.2, .9, .25, 1.15) both;
+}
+
+.photo-lightbox__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(80vh - 20px);
+  object-fit: contain;
+}
+
+.photo-lightbox__close {
+  position: absolute;
+  z-index: 1;
+  top: -14px;
+  right: -14px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #fff3d3;
+  border-radius: 50%;
+  background: #4a2d22;
+  color: #fff3d3;
+  cursor: pointer;
+}
+.photo-lightbox__close:hover { background: #6b392a; }
+.photo-lightbox__close:focus-visible { outline: 2px solid #ffe6a7; outline-offset: 3px; }
+
+.photo-lightbox--closing { animation: pickup-dim-out .34s ease both; }
+.photo-lightbox--closing .photo-lightbox__content { animation: photo-put-down .34s cubic-bezier(.4, 0, 1, 1) both; }
+
+@keyframes pickup-dim-in { from { background: rgba(16, 12, 9, 0); } to { background: rgba(16, 12, 9, .48); } }
+@keyframes pickup-dim-out { from { background: rgba(16, 12, 9, .48); } to { background: rgba(16, 12, 9, 0); } }
+@keyframes photo-pickup {
+  from {
+    opacity: .7;
+    transform: translate(var(--pickup-x), var(--pickup-y)) scale(var(--pickup-scale)) rotate(var(--pickup-rotation));
+  }
+  65% { transform: scale(1.03) rotate(-1deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes photo-put-down {
+  from { opacity: 1; transform: scale(1) rotate(0deg); }
+  to { opacity: .7; transform: translate(var(--pickup-x), var(--pickup-y)) scale(var(--pickup-scale)) rotate(var(--pickup-rotation)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid, .photo-lightbox, .photo-lightbox__content { animation: none; transition: none; }
+}
 
 @media (max-width: 620px) {
   .book-stage { align-items: start; padding-top: 64px; }
