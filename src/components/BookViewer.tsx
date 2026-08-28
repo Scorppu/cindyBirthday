@@ -31,9 +31,9 @@ export function BookViewer() {
       </div>
     </section>
     <nav className="book-navigation" aria-label="Book navigation">
-      <button type="button" onClick={previous} disabled={spreadIndex === 0} aria-label="Previous pages"><ChevronLeft size={20} /></button>
+      <button type="button" onClick={previous} disabled={spreadIndex === 0} aria-label="Previous pages">{"<"}</button>
       <span>{spreadIndex + 1} / {spreads.length} · {spread.label}</span>
-      <button type="button" onClick={next} disabled={spreadIndex === spreads.length - 1} aria-label="Next pages"><ChevronRight size={20} /></button>
+      <button type="button" onClick={next} disabled={spreadIndex === spreads.length - 1} aria-label="Next pages">{">"}</button>
     </nav>
   </main>
 }
