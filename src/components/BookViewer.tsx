@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight, LoaderCircle } from 'lucide-react'
+import { LoaderCircle } from 'lucide-react'
 import { spreads } from '../book-data'
 import type { Spread } from '../types'
 import { Page } from './Page'
@@ -150,9 +150,9 @@ export function BookViewer() {
       </div>
     </section>
     <nav className="book-navigation" aria-label="Book navigation">
-      <button type="button" onClick={previous} disabled={spreadIndex === 0 || isPreparing} aria-label="Previous pages"><ChevronLeft size={20} /></button>
+      <button type="button" onClick={previous} disabled={spreadIndex === 0 || isPreparing} aria-label="Previous pages">{"<"}</button>
       <span>{spreadIndex + 1} / {spreads.length} · {spread.label}</span>
-      <button type="button" onClick={next} disabled={spreadIndex === spreads.length - 1 || isPreparing} aria-label="Next pages"><ChevronRight size={20} /></button>
+      <button type="button" onClick={next} disabled={spreadIndex === spreads.length - 1 || isPreparing} aria-label="Next pages">{">"}</button>
     </nav>
     <div className={`page-transition${isPreparing ? ' page-transition--visible' : ''}`} aria-hidden={!isPreparing}>
       <LoaderCircle className="page-transition__spinner" size={30} aria-hidden="true" />
