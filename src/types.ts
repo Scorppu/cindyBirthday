@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react'
 
 export type CollagePosition = {
-  /** CSS length offset from the position assigned by the collage grid. */
+  /** Horizontal position within the page's collage layer. */
   x?: string | number
-  /** CSS length offset from the position assigned by the collage grid. */
+  /** Vertical position within the page's collage layer. */
   y?: string | number
+  /** Polaroid width within the page's collage layer. */
+  width?: string | number
 }
 
 export type CollageImage = {

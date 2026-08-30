@@ -49,18 +49,18 @@ Each spread can provide its own `backgroundImage`. Pages can also provide a coll
     title: 'A New Memory',
     body: <p>...</p>,
     images: [
-      { id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4, position: { x: '-4px', y: '2px' } },
-      { id: 'trail', src: '/photos/trail.jpg', alt: 'A forest trail', rotation: 3, position: { x: '3px', y: '-2px' } },
+      { id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4, position: { x: '28%', y: '30%', width: '38%' } },
+      { id: 'trail', src: '/photos/trail.jpg', alt: 'A forest trail', rotation: 3, position: { x: '72%', y: '70%', width: '38%' } },
     ],
   },
   right: { body: <p>...</p> },
 }
 ```
 
-Images support optional `rotation` and `position` values. Position offsets accept CSS lengths such as pixels, percentages, or `em` units and are applied relative to the spot assigned by the collage grid:
+Images support optional `rotation` and `position` values. Each polaroid is an independent layer over the parchment: `x` and `y` set its center point, while `width` sets its size. CSS lengths work, but percentages are recommended so positions scale with the book:
 
 ```tsx
-{ id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4, position: { x: '-4px', y: '2px' } }
+{ id: 'lake', src: '/photos/lake.jpg', alt: 'A lake at sunset', rotation: -4, position: { x: '28%', y: '30%', width: '38%' } }
 ```
 
 Click or keyboard-focus a polaroid to pick it up from the page and inspect it at a larger size. The **×** button, backdrop, or `Escape` puts it back down with a reverse animation.

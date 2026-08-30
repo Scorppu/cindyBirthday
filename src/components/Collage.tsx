@@ -22,8 +22,9 @@ type SelectedPhoto = {
 export function Polaroid({ image, onOpen }: { image: CollageImage; onOpen: (event: MouseEvent<HTMLButtonElement>) => void }) {
   const style = {
     '--rotation': `${image.rotation ?? 0}deg`,
-    '--offset-x': toCssLength(image.position?.x),
-    '--offset-y': toCssLength(image.position?.y),
+    '--position-x': image.position?.x === undefined ? '50%' : toCssLength(image.position.x),
+    '--position-y': image.position?.y === undefined ? '50%' : toCssLength(image.position.y),
+    '--polaroid-width': image.position?.width === undefined ? '42%' : toCssLength(image.position.width),
   } as CSSProperties
 
   return <button type="button" className={`polaroid ${image.className ?? ''}`} style={style} onClick={onOpen} aria-label={`Pick up ${image.alt} to view it larger`}>
