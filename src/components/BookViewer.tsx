@@ -10,6 +10,7 @@ const PAGE_FLIP_SOUNDS = [
   '/open_flip2.ogg',
   '/open_flip3.ogg',
 ]
+const BACKGROUND_MUSIC = '/sweden.ogg'
 
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
@@ -51,6 +52,7 @@ export function BookViewer() {
   const isPreparingRef = useRef(true)
   const transitionId = useRef(0)
   const flipSounds = useRef<HTMLAudioElement[]>([])
+  const backgroundMusic = useRef<HTMLAudioElement | null>(null)
   const nextFlipSound = useRef(0)
   const spread = spreads[spreadIndex]
 
@@ -61,12 +63,21 @@ export function BookViewer() {
       return sound
     })
 
+    const music = new Audio(BACKGROUND_MUSIC)
+    music.loop = true
+    music.volume = 0.35
+    music.preload = 'auto'
+    backgroundMusic.current = music
+
     return () => {
       flipSounds.current.forEach((sound) => {
         sound.pause()
         sound.src = ''
       })
       flipSounds.current = []
+      music.pause()
+      music.src = ''
+      backgroundMusic.current = null
     }
   }, [])
 
@@ -79,6 +90,12 @@ export function BookViewer() {
     })
     return () => { cancelled = true }
   }, [])
+
+  const playBackgroundMusic = () => {
+    const music = backgroundMusic.current
+    if (!music || !music.paused) return
+    void music.play().catch(() => undefined)
+  }
 
   const playPageFlipSound = () => {
     const sounds = flipSounds.current
@@ -96,6 +113,7 @@ export function BookViewer() {
   const goToSpread = (index: number) => {
     if (index < 0 || index >= spreads.length || isPreparingRef.current || index === spreadIndex) return
 
+    playBackgroundMusic()
     playPageFlipSound()
     isPreparingRef.current = true
     setIsPreparing(true)
