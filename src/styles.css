@@ -281,6 +281,44 @@ button { font: inherit; }
 .book-navigation button:focus-visible { outline: 2px solid #ffe6a7; outline-offset: 3px; }
 .book-navigation button:disabled { cursor: default; opacity: .35; }
 
+.page-transition {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(23, 21, 18, 0);
+  transition: opacity .2s ease, background .2s ease;
+}
+
+.page-transition--visible {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(23, 21, 18, .62);
+}
+
+.page-transition__spinner {
+  color: #fff3d3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .7));
+  animation: page-spinner .8s linear infinite;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes page-spinner { to { transform: rotate(360deg); } }
+
 .collage {
   position: absolute;
   z-index: 3;
@@ -386,7 +424,7 @@ button { font: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .polaroid, .photo-lightbox, .photo-lightbox__content { animation: none; transition: none; }
+  .polaroid, .photo-lightbox, .photo-lightbox__content, .page-transition, .page-transition__spinner { animation: none; transition: none; }
 }
 
 @media (max-width: 620px) {
