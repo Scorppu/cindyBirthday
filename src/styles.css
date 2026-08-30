@@ -301,7 +301,7 @@ button { font: inherit; }
 
 .page-transition__spinner {
   color: #fff3d3;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .7));
+  filter: drop-remo(0 2px 4px rgba(0, 0, 0, .7));
   animation: page-spinner .8s linear infinite;
 }
 
@@ -332,25 +332,28 @@ button { font: inherit; }
   top: var(--position-y, 50%);
   left: var(--position-x, 50%);
   width: var(--polaroid-width, 42%);
+  aspect-ratio: 1 / 1;
   min-width: 0;
   margin: 0;
-  padding: 2% 2% 7%;
+  padding: 2%;
   pointer-events: auto;
+  appearance: none;
+  -webkit-appearance: none;
   border: 0;
   border-radius: 0;
-  background: #fffdf5;
-  box-shadow: 0 5px 8px rgba(62, 38, 20, .3);
+  background: url('/textures/map_background.png') center / cover no-repeat;
+  image-rendering: pixelated;
   color: inherit;
   cursor: zoom-in;
   font: inherit;
   transform: translate(-50%, -50%) rotate(var(--rotation, 0deg));
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition: transform .2s ease;
 }
+
 
 .polaroid:hover,
 .polaroid:focus-visible {
   z-index: 1;
-  box-shadow: 0 8px 12px rgba(62, 38, 20, .38);
   transform: translate(-50%, calc(-50% - 3px)) rotate(0deg);
 }
 .polaroid:focus-visible { outline: 2px solid #8d6543; outline-offset: 3px; }
