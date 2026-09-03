@@ -167,6 +167,10 @@ button { font: inherit; }
   padding: 3% 5%;
 }
 
+/* Set verticalAlign: 'top' or 'bottom' on an individual PageContent to override the default. */
+.page-content--top { justify-content: flex-start; }
+.page-content--bottom { justify-content: flex-end; }
+
 .cover-page--right { padding-inline: 8%; }
 
 .eyebrow {

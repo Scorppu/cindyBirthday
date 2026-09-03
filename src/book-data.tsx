@@ -1,11 +1,11 @@
 import type { Spread } from "./types";
 
-const ROOF_SCENE = "/backgrounds/2025-07-16_23.06.35.png"
-const GYM_SCENE = "/backgrounds/2025-11-27_23.50.18.png"
-const DORM_SCENE = "/backgrounds/2025-10-26_02.53.28.png"
-const HOURGLASS_SCENE = "backgrounds/2025-10-19_23.27.53.png"
-const SLED_SCENE = "backgrounds/2026-01-11_00.07.27.png"
-const SUNSET_SCENE = "backgrounds/2026-01-10_01.36.40.png"
+const ROOF_SCENE = "/backgrounds/2025-07-16_23.06.35.png";
+const GYM_SCENE = "/backgrounds/2025-11-27_23.50.18.png";
+const DORM_SCENE = "/backgrounds/2025-10-26_02.53.28.png";
+const HOURGLASS_SCENE = "backgrounds/2025-10-19_23.27.53.png";
+const SLED_SCENE = "backgrounds/2026-01-11_00.07.27.png";
+const SUNSET_SCENE = "backgrounds/2026-01-10_01.36.40.png";
 const ARES_PORTRAIT = "backgrounds/huge_2026-08-19_00.21.53.png";
 
 export const spreads: Spread[] = [
@@ -80,6 +80,7 @@ export const spreads: Spread[] = [
     label: "Chapter I", // working hard at the gym
     backgroundImage: GYM_SCENE,
     left: {
+      verticalAlign: "top",
       eyebrow: "CHAPTER I",
       title: "We go gym.",
       body: (
@@ -98,6 +99,7 @@ export const spreads: Spread[] = [
       ),
     },
     right: {
+      verticalAlign: "top",
       body: (
         <>
           <p>
@@ -112,6 +114,15 @@ export const spreads: Spread[] = [
           </p>
         </>
       ),
+      images: [
+        {
+          id: "IMG_1526(1)",
+          src: "/polaroids/IMG_1526(1).JPG",
+          alt: "Blue Top Gym Cindy",
+          rotation: 2,
+          position: { x: "50%", y: "79%", width: "40%" },
+        },
+      ],
     },
   },
   {
@@ -119,6 +130,7 @@ export const spreads: Spread[] = [
     label: "Chapter I",
     backgroundImage: GYM_SCENE,
     left: {
+      verticalAlign: "top",
       body: (
         <>
           <p>
@@ -149,21 +161,14 @@ export const spreads: Spread[] = [
           src: "/polaroids/IMG_1493.JPG",
           alt: "RDL Cindy",
           rotation: -4,
-          position: { x: "29%", y: "26%", width: "39%" },
-        },
-        {
-          id: "IMG_1526(1)",
-          src: "/polaroids/IMG_1526(1).JPG",
-          alt: "Blue Top Gym Cindy",
-          rotation: 6,
-          position: { x: "75%", y: "36%", width: "39%" },
+          position: { x: "52%", y: "23%", width: "47%" },
         },
         {
           id: "IMG_5782",
           src: "/polaroids/IMG_5782.JPG",
           alt: "Close up Cindy",
-          rotation: -1,
-          position: { x: "44%", y: "77%", width: "39%" },
+          rotation: 3,
+          position: { x: "48%", y: "73%", width: "47%" },
         },
       ],
     },
@@ -173,48 +178,101 @@ export const spreads: Spread[] = [
     label: "Chapter II", // working hard for academics
     backgroundImage: DORM_SCENE,
     left: {
+      verticalAlign: "top",
       eyebrow: "CHAPTER II",
       title: "FYP HELL",
       body: (
         <>
-          <p className="small-note">
-            {
-              "I know it hurt to finish it, but I still want you to be proud of yourself for it"
-            }
-          </p>
           <p>
-            I never knew the struggles of journalism students until I watched
-            you scrape through years and years of newspapers on that
-            god-forsaken machine.
+            The past year definitely wasn't all sunshine and rainbows. Even
+            though we were having a lot of fun, there was still work to be done.
+          </p>
+
+          <p>
+            I'm sure you remember (even though you might not want to), the dark
+            humid corner of the library; We watch people leaving campus or
+            heading to eat, while we were stuck fighting a seemingly losing
+            battle.
           </p>
         </>
       ),
       images: [],
     },
     right: {
+      verticalAlign: "top",
+      body: (
+        <>
+          <p>
+            But let's be honest, your job was tougher than mine. On most days, I
+            was just there talking to an AI on my laptop, while you were
+            scraping through years & years of newspapers.
+          </p>
+          <p>
+            I can still hear the spool of the film wheel spinning. Along with
+            the bright green light that flashes as the film passes over it.
+          </p>
+        </>
+      ),
       images: [
         {
           id: "IMG_0685",
           src: "/polaroids/IMG_0685(1).JPG",
           alt: "Working Cindy",
-          rotation: -4,
-          position: { x: "29%", y: "29%", width: "39%" },
+          rotation: 4,
+          position: { x: "50%", y: "78%", width: "44%" },
         },
+      ],
+    },
+  },
+  {
+    id: "chapter-two",
+    label: "Chapter II", // working hard for academics
+    backgroundImage: DORM_SCENE,
+    left: {
+      verticalAlign: "top",
+      body: (
+        <>
+          <p className="small-note">
+            on a completely unrelated note, here are some pictures of you
+            sleeping after a long day.
+          </p>
+        </>
+      ),
+      images: [
         {
           id: "IMG_0439(1)",
           src: "/polaroids/IMG_0439(1).JPG",
           alt: "Cindy sleeping on bus",
-          rotation: 2,
-          position: { x: "71%", y: "29%", width: "39%" },
+          rotation: -4,
+          position: { x: "27%", y: "50%", width: "50%" },
         },
         {
           id: "IMG_0503(1)",
           src: "/polaroids/IMG_0503(1).JPG",
           alt: "Cindy sleeping in the library",
           rotation: 6,
-          position: { x: "50%", y: "73%", width: "39%" },
+          position: { x: "67%", y: "55%", width: "50%" },
         },
       ],
+    },
+    right: {
+      verticalAlign: "top",
+      body: (
+        <>
+          <p className="small-note">
+            You're literally her.
+          </p>
+        </>
+      ),
+      images: [
+        {
+          id: "A368D51C-7CAB-430C-B4AA-373BB7326E04.jpg",
+          src: "/polaroids/A368D51C-7CAB-430C-B4AA-373BB7326E04.jpg",
+          alt: "Tired Marinette",
+          rotation: 2,
+          position: { x: "50%", y: "50%", width: "80%" },
+        }
+      ]
     },
   },
   {
@@ -251,13 +309,7 @@ export const spreads: Spread[] = [
       body: (
         <>
           <p className="small-note">
-            {
-              "I take great pride in knowing that no future boyfriend will ever top this :)"
-            }
-          </p>
-          <p className="small-note">
-            Did you notice the minecraft backgrounds are chronologically
-            ordered?
+            {"No past or future boyfriend will ever top this :)"}
           </p>
         </>
       ),

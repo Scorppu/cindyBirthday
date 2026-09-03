@@ -23,6 +23,8 @@ export type PageContent = {
   title?: ReactNode
   titleLevel?: 1 | 2
   body?: ReactNode
+  /** Vertical placement of this page's text within the parchment. */
+  verticalAlign?: 'top' | 'center' | 'bottom'
   variant?: 'cover' | 'reading'
   images?: CollageImage[]
 }
