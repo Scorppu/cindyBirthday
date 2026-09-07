@@ -389,8 +389,7 @@ button { font: inherit; }
 
 .polaroid:hover,
 .polaroid:focus-visible {
-  z-index: 1;
-  transform: translate(-50%, calc(-50% - 3px)) rotate(0deg);
+  transform: translate(-50%, calc(-50% - 3px)) rotate(var(--hover-rotation, 0deg));
 }
 .polaroid:focus-visible { outline: 2px solid #8d6543; outline-offset: 3px; }
 .polaroid img {
