@@ -7,6 +7,7 @@ const SLEEP_SCENE = "/backgrounds/2026-01-24_02.21.44.png";
 const HOURGLASS_SCENE = "/backgrounds/2025-10-19_23.27.53.png";
 const SLED_SCENE = "/backgrounds/2026-01-11_00.07.27.png";
 const SUNSET_SCENE = "/backgrounds/2026-01-10_01.36.40.png";
+const FISHING_SCENE = "/backgrounds/2025-07-20_23.23.28.png";
 const ARES_PORTRAIT = "/backgrounds/huge_2026-08-19_00.21.53.png";
 const SITTING_SCENE = "/backgrounds/huge_2026-08-17_00.27.35.png";
 
@@ -357,13 +358,13 @@ export const spreads: Spread[] = [
       ),
     },
     right: {
-      verticalAlign: "center",
+      verticalAlign: "top",
       eyebrow: "",
       body: (
         <>
           <p className="subtitle">
-            Even in your darkest moments, you never stopped trying to be the
-            light in other people's lives.
+            In your darkest moments, you never stopped trying to be the light in
+            other people's lives.
           </p>
 
           <p className="subtitle">
@@ -372,14 +373,107 @@ export const spreads: Spread[] = [
           </p>
         </>
       ),
+      images: [
+        {
+          id: "IMG_5666(1).JPG",
+          src: "/polaroids/IMG_5666(1).JPG",
+          alt: "Cindy touching kitty",
+          rotation: 2,
+          position: { x: "50%", y: "70%", width: "60%" },
+        },
+      ],
     },
   },
   {
-    id: "chapter-five",
-    label: "Chapter V", // making me want to do better for you
+    id: "chapter-four",
+    label: "Chapter IV", // making me want to do better for you
     backgroundImage: SUNSET_SCENE,
-    left: {},
-    right: {},
+    left: {
+      title: "You make me better",
+      eyebrow: "CHAPTER IV",
+      body: (
+        <>
+          <p>
+            Before I met you again, I only had one reason to keep working. I
+            only had myself to fight for.
+          </p>
+          <p>
+            You showed me, through your actions and just being yourself, that I
+            could be more than just better than yesterday. You showed me that I
+            could do my best not just for me, but for you, and for others.
+          </p>
+          <p>
+            You made me feel needed, appreciated, and loved; not because of the
+            value I provide, but simply by being myself.
+          </p>
+        </>
+      ),
+    },
+    right: {
+      verticalAlign: "top",
+      body: (
+        <>
+          <p>
+            For the first time in my life, I felt that I didn't need to fight to
+            earn love. And yet that made me want to fight even harder.
+          </p>
+        </>
+      ),
+      images: [
+        {
+          id: "IMG_5794(1).JPG",
+          src: "/polaroids/IMG_5794(1).JPG",
+          alt: "Flower WIP 1",
+          rotation: 2,
+          position: { x: "50%", y: "60%", width: "70%" },
+        },
+      ],
+    },
+  },
+  {
+    id: "chapter-four-1",
+    label: "Chapter IV",
+    backgroundImage: FISHING_SCENE,
+    left: {
+      verticalAlign: "top",
+      body: (
+        <>
+          <p>
+            I came out of my shell, and started doing things I never thought I'd
+            do, said words I never thought I'd get to say.
+          </p>
+        </>
+      ),
+      images: [
+        {
+          id: "camphoto_1903590565(146).jpg",
+          src: "/polaroids/camphoto_1903590565(146).jpg",
+          alt: "Flower WIP 2",
+          rotation: -4,
+          position: { x: "45%", y: "60%", width: "70%" },
+        },
+      ],
+    },
+    right: {
+      verticalAlign: "top",
+      body: (
+        <>
+          <p>
+            I'm working harder, getting stronger, becoming healthier, all
+            because of one thing.
+          </p>
+        </>
+      ),
+      images: [
+        {
+          id: "camphoto_1483920592-68",
+          src: "/polaroids/camphoto_1903590565(146).jpg",
+          alt: "Flower WIP 3",
+          rotation: 3,
+          position: { x: "52%", y: "58%", width: "70%" },
+        },
+      ],
+    },
   },
   {
     id: "epilogue",
@@ -391,7 +485,6 @@ export const spreads: Spread[] = [
       titleLevel: 2,
     },
     right: {
-      body: <></>,
       images: [
         {
           id: "IMG_5244(1)",
@@ -399,6 +492,20 @@ export const spreads: Spread[] = [
           alt: "My Love",
           rotation: 2,
           position: { x: "55%", y: "50%", width: "80%" },
+        },
+        {
+          id: "IMG_5211(1)",
+          src: "/polaroids/IMG_5211(1).JPG",
+          alt: "My Love 2",
+          rotation: -2,
+          position: { x: "25%", y: "75%", width: "30%" },
+        },
+        {
+          id: "IMG_5704",
+          src: "/polaroids/IMG_5704.JPG",
+          alt: "My Love 3",
+          rotation: 5,
+          position: { x: "80%", y: "75%", width: "35%" },
         },
       ],
     },
