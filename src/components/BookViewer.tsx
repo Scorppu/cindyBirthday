@@ -11,8 +11,16 @@ const PAGE_FLIP_SOUNDS = [
   '/open_flip3.ogg',
 ]
 const BACKGROUND_MUSIC = '/sweden.ogg'
-const ACCESS_PIN = import.meta.env.VITE_ACCESS_PIN ?? '123456'
 const PIN_STORAGE_KEY = 'birthday-book-unlocked'
+
+const ACCESS_PINS = (import.meta.env.VITE_ACCESS_PINS ?? 'pin1,pin2')
+  .split(',')
+  .map((pin: string) => pin.trim())
+  .filter(Boolean)
+
+function isValidAccessPin(input: string): boolean {
+  return ACCESS_PINS.includes(input.trim())
+}
 
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
@@ -144,7 +152,7 @@ export function BookViewer() {
 
   const unlockBook = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (pin === ACCESS_PIN) {
+    if (isValidAccessPin(pin)) {
       setIsUnlocked(true)
       setPinError('')
       try {

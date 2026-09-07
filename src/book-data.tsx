@@ -196,7 +196,7 @@ export const spreads: Spread[] = [
             scraping through years & years of newspapers.
           </p>
           <p>
-            I can still hear the spool of the film wheel spinning. Along with
+            I can still hear the spool of film spinning. Along with
             the bright green light that flashes as the film passes over it.
           </p>
         </>
