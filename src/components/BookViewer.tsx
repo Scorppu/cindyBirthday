@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { LoaderCircle } from 'lucide-react'
 import { spreads } from '../book-data'
 import type { Spread } from '../types'
@@ -11,6 +11,8 @@ const PAGE_FLIP_SOUNDS = [
   '/open_flip3.ogg',
 ]
 const BACKGROUND_MUSIC = '/sweden.ogg'
+const ACCESS_PIN = import.meta.env.VITE_ACCESS_PIN ?? '123456'
+const PIN_STORAGE_KEY = 'birthday-book-unlocked'
 
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
@@ -47,6 +49,15 @@ function preloadSpread(spread: Spread) {
 }
 
 export function BookViewer() {
+  const [isUnlocked, setIsUnlocked] = useState(() => {
+    try {
+      return window.localStorage.getItem(PIN_STORAGE_KEY) === 'true'
+    } catch {
+      return false
+    }
+  })
+  const [pin, setPin] = useState('')
+  const [pinError, setPinError] = useState('')
   const [spreadIndex, setSpreadIndex] = useState(0)
   const [isBookHidden, setIsBookHidden] = useState(false)
   const [isPreparing, setIsPreparing] = useState(true)
@@ -131,6 +142,23 @@ export function BookViewer() {
   const previous = () => goToSpread(spreadIndex - 1)
   const next = () => goToSpread(spreadIndex + 1)
 
+  const unlockBook = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (pin === ACCESS_PIN) {
+      setIsUnlocked(true)
+      setPinError('')
+      try {
+        window.localStorage.setItem(PIN_STORAGE_KEY, 'true')
+      } catch {
+        // The book still works when storage is unavailable.
+      }
+      return
+    }
+
+    setPinError('That PIN is not quite right. Try again.')
+    setPin('')
+  }
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') previous()
@@ -140,7 +168,41 @@ export function BookViewer() {
     return () => window.removeEventListener('keydown', onKeyDown)
   })
 
-  return <main className="app-shell" aria-busy={isPreparing} style={{ backgroundImage: `url(${spread.backgroundImage})` }}>
+  return <main className={`app-shell${isUnlocked ? '' : ' app-shell--locked'}`} aria-busy={isPreparing} style={{ backgroundImage: `url(${spread.backgroundImage})` }}>
+    {!isUnlocked && (
+      <div className="pin-gate" role="dialog" aria-modal="true" aria-labelledby="pin-title">
+        <div className="pin-gate__card">
+          <p className="pin-gate__eyebrow">A little something for you</p>
+          <h1 id="pin-title">Enter the secret PIN</h1>
+          <p className="pin-gate__hint">Six digits will unlock your birthday book.</p>
+          <form onSubmit={unlockBook}>
+            <label className="visually-hidden" htmlFor="book-pin">6-digit PIN</label>
+            <input
+              id="book-pin"
+              className="pin-gate__input"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]{6}"
+              maxLength={6}
+              autoComplete="one-time-code"
+              value={pin}
+              onChange={(event) => {
+                setPin(event.target.value.replace(/\\D/g, '').slice(0, 6))
+                setPinError('')
+              }}
+              placeholder="••••••"
+              aria-invalid={Boolean(pinError)}
+              aria-describedby={pinError ? 'pin-error' : 'pin-hint'}
+              autoFocus
+              required
+            />
+            <p id="pin-hint" className="pin-gate__digits">Enter exactly 6 numbers</p>
+            {pinError && <p id="pin-error" className="pin-gate__error" role="alert">{pinError}</p>}
+            <button className="pin-gate__button" type="submit">Open the book</button>
+          </form>
+        </div>
+      </div>
+    )}
     <div className={`scene-shade${isBookHidden ? ' scene-shade--book-hidden' : ''}`} aria-hidden="true" />
     <button
       type="button"

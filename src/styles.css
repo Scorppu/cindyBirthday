@@ -48,6 +48,79 @@ button { font: inherit; }
 
 .scene-shade--book-hidden { opacity: 0; }
 
+.app-shell--locked .book-stage,
+.app-shell--locked .book-navigation,
+.app-shell--locked .book-visibility-toggle {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pin-gate {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(16, 12, 9, .72);
+  backdrop-filter: blur(4px);
+}
+
+.pin-gate__card {
+  width: min(420px, 100%);
+  padding: 34px 30px 30px;
+  border: 3px solid #8d6543;
+  outline: 1px solid rgba(255, 241, 207, .65);
+  background: #fbf2d5;
+  color: #4a2d22;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .55);
+}
+
+.pin-gate__eyebrow {
+  margin: 0 0 12px;
+  color: #876444;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.pin-gate h1 { margin: 0; font-size: clamp(20px, 5vw, 30px); line-height: 1.1; }
+.pin-gate__hint { margin: 14px 0 22px; color: #76513a; font-size: 13px; line-height: 1.4; }
+
+.pin-gate__input {
+  display: block;
+  width: 100%;
+  padding: 12px 10px;
+  border: 2px solid #8d6543;
+  border-radius: 2px;
+  background: #fffdf5;
+  color: #4a2d22;
+  font: 700 24px 'Minecraft', monospace;
+  letter-spacing: .35em;
+  text-align: center;
+}
+.pin-gate__input::placeholder { color: #b99b79; letter-spacing: .2em; }
+.pin-gate__input:focus { outline: 2px solid #c08352; outline-offset: 2px; }
+.pin-gate__digits { margin: 9px 0 0; color: #937256; font-size: 10px; }
+.pin-gate__error { margin: 9px 0 0; color: #9a3d2f; font-size: 11px; }
+
+.pin-gate__button {
+  width: 100%;
+  margin-top: 22px;
+  padding: 12px 16px;
+  border: 1px solid #4a2d22;
+  border-radius: 2px;
+  background: #4a2d22;
+  color: #fff4d4;
+  cursor: pointer;
+  font-size: 13px;
+}
+.pin-gate__button:hover { background: #6b392a; }
+.pin-gate__button:focus-visible { outline: 2px solid #c08352; outline-offset: 3px; }
+
 .book-stage {
   display: grid;
   place-items: center;
