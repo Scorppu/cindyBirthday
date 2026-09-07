@@ -48,6 +48,7 @@ function preloadSpread(spread: Spread) {
 
 export function BookViewer() {
   const [spreadIndex, setSpreadIndex] = useState(0)
+  const [isBookHidden, setIsBookHidden] = useState(false)
   const [isPreparing, setIsPreparing] = useState(true)
   const isPreparingRef = useRef(true)
   const transitionId = useRef(0)
@@ -140,8 +141,31 @@ export function BookViewer() {
   })
 
   return <main className="app-shell" aria-busy={isPreparing} style={{ backgroundImage: `url(${spread.backgroundImage})` }}>
-    <div className="scene-shade" aria-hidden="true" />
-    <section className="book-stage" aria-label="Birthday book">
+    <div className={`scene-shade${isBookHidden ? ' scene-shade--book-hidden' : ''}`} aria-hidden="true" />
+    <button
+      type="button"
+      className="book-visibility-toggle"
+      onClick={() => setIsBookHidden((hidden) => !hidden)}
+      aria-pressed={isBookHidden}
+      aria-label={isBookHidden ? 'Show book' : 'Hide book'}
+      title={isBookHidden ? 'Show book' : 'Hide book'}
+    >
+      <svg className="pixel-eye" viewBox="0 0 32 20" aria-hidden="true" shapeRendering="crispEdges">
+        {isBookHidden ? (
+          <>
+            <rect x="3" y="9" width="26" height="3" />
+            <rect x="7" y="6" width="3" height="3" />
+            <rect x="22" y="6" width="3" height="3" />
+          </>
+        ) : (
+          <>
+            <path d="M1 10 5 6h4V3h14v3h4l4 4-4 4h-4v3H9v-3H5z" />
+            <rect className="pixel-eye__pupil" x="13" y="6" width="6" height="8" />
+          </>
+        )}
+      </svg>
+    </button>
+    <section className={`book-stage${isBookHidden ? ' book-stage--hidden' : ''}`} aria-label="Birthday book" aria-hidden={isBookHidden}>
       <div className="book-spread">
         <div className="atlas-crop atlas-crop--trim" aria-hidden="true"><img src={SCHOLAR_ATLAS} alt="" /></div>
         <div className="atlas-crop atlas-crop--pages" aria-hidden="true"><img src={SCHOLAR_ATLAS} alt="" /></div>

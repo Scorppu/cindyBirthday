@@ -4,10 +4,11 @@ const ROOF_SCENE = "/backgrounds/2025-07-16_23.06.35.png";
 const GYM_SCENE = "/backgrounds/2025-11-27_23.50.18.png";
 const DORM_SCENE = "/backgrounds/2025-10-26_02.53.28.png";
 const SLEEP_SCENE = "/backgrounds/2026-01-24_02.21.44.png";
-const HOURGLASS_SCENE = "backgrounds/2025-10-19_23.27.53.png";
-const SLED_SCENE = "backgrounds/2026-01-11_00.07.27.png";
-const SUNSET_SCENE = "backgrounds/2026-01-10_01.36.40.png";
-const ARES_PORTRAIT = "backgrounds/huge_2026-08-19_00.21.53.png";
+const HOURGLASS_SCENE = "/backgrounds/2025-10-19_23.27.53.png";
+const SLED_SCENE = "/backgrounds/2026-01-11_00.07.27.png";
+const SUNSET_SCENE = "/backgrounds/2026-01-10_01.36.40.png";
+const ARES_PORTRAIT = "/backgrounds/huge_2026-08-19_00.21.53.png";
+const SITTING_SCENE = "/backgrounds/huge_2026-08-17_00.27.35.png";
 
 export const spreads: Spread[] = [
   {
@@ -112,7 +113,7 @@ export const spreads: Spread[] = [
     },
   },
   {
-    id: "chapter-one",
+    id: "chapter-one-1",
     label: "Chapter I",
     backgroundImage: GYM_SCENE,
     left: {
@@ -160,7 +161,7 @@ export const spreads: Spread[] = [
     },
   },
   {
-    id: "chapter-two",
+    id: "chapter-two-1",
     label: "Chapter II", // working hard for academics
     backgroundImage: DORM_SCENE,
     left: {
@@ -364,6 +365,11 @@ export const spreads: Spread[] = [
             Even in your darkest moments, you never stopped trying to be the
             light in other people's lives.
           </p>
+
+          <p className="subtitle">
+            Even if your intentions don't get through, I know you truly want the
+            best for the people around you.
+          </p>
         </>
       ),
     },
@@ -400,7 +406,7 @@ export const spreads: Spread[] = [
   {
     id: "funny-pictures",
     label: "Funny Pictures",
-    backgroundImage: ARES_PORTRAIT,
+    backgroundImage: SITTING_SCENE,
     left: {
       body: (
         <>
@@ -415,21 +421,21 @@ export const spreads: Spread[] = [
     right: {
       images: [
         {
-          id: "camphoto-1297389768-36",
+          id: "camphoto_1297389768-36",
           src: "/polaroids/camphoto_1297389768(36).jpg",
           alt: "Shy Cindy",
           rotation: 6,
           position: { x: "74%", y: "35%", width: "47%" },
         },
         {
-          id: "camphoto-1297389768-36",
+          id: "camphoto_1932422408-52",
           src: "/polaroids/camphoto_1932422408(52).jpg",
           alt: "Middle finger Cindy",
           rotation: -6,
           position: { x: "34%", y: "35%", width: "47%" },
         },
         {
-          id: "camphoto-1297389768-36",
+          id: "camphoto_1483920592-68",
           src: "/polaroids/camphoto_1483920592(68).jpg",
           alt: "MTR Cindy",
           rotation: 0,

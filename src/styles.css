@@ -43,13 +43,22 @@ button { font: inherit; }
   z-index: -1;
   inset: 0;
   background: linear-gradient(180deg, rgba(16, 12, 9, .16), rgba(16, 12, 9, .46));
+  transition: opacity .25s ease;
 }
+
+.scene-shade--book-hidden { opacity: 0; }
 
 .book-stage {
   display: grid;
   place-items: center;
   min-height: 0;
   padding: 32px 24px 12px;
+  transition: opacity .25s ease;
+}
+
+.book-stage--hidden {
+  visibility: hidden;
+  opacity: 0;
 }
 
 /* Visible output region: x=0, y=180, w=295, h=180 from Scholar's 512×512 atlas. */
@@ -282,6 +291,29 @@ button { font: inherit; }
 }
 
 .book-navigation button:hover:not(:disabled) { background: rgba(107, 57, 42, .88); transform: translateY(-1px); }
+
+.book-visibility-toggle {
+  position: absolute;
+  z-index: 5;
+  top: 18px;
+  right: 20px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 34px;
+  padding: 6px;
+  border: 1px solid rgba(255, 241, 207, .58);
+  border-radius: 2px;
+  background: rgba(48, 29, 20, .7);
+  color: #fff4d4;
+  cursor: pointer;
+  image-rendering: pixelated;
+}
+.book-visibility-toggle:hover { background: rgba(107, 57, 42, .88); transform: translateY(-1px); }
+.book-visibility-toggle:focus-visible { outline: 2px solid #ffe6a7; outline-offset: 3px; }
+.pixel-eye { display: block; width: 26px; height: 18px; fill: currentColor; }
+.pixel-eye__pupil { fill: #4a2d22; }
+
 .book-navigation button:focus-visible { outline: 2px solid #ffe6a7; outline-offset: 3px; }
 .book-navigation button:disabled { cursor: default; opacity: .35; }
 
@@ -450,4 +482,5 @@ button { font: inherit; }
   .page--right { right: 6.2%; width: 41.7%; }
   .cover-page, .reading-page { padding-inline: 3%; }
   .book-navigation { gap: 12px; font-size: 10px; }
+  .book-visibility-toggle { top: 12px; right: 12px; }
 }
