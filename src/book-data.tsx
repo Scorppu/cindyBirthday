@@ -511,10 +511,11 @@ export const spreads: Spread[] = [
     },
   },
   {
-    id: "funny-pictures",
-    label: "Funny Pictures",
+    id: "bloopers",
+    label: "Bloopers",
     backgroundImage: SITTING_SCENE,
     left: {
+      verticalAlign: "top",
       body: (
         <>
           <p className="small-note">
@@ -524,31 +525,39 @@ export const spreads: Spread[] = [
           </p>
         </>
       ),
-    },
-    right: {
       images: [
         {
           id: "camphoto_1297389768-36",
           src: "/polaroids/camphoto_1297389768(36).jpg",
           alt: "Shy Cindy",
           rotation: 6,
-          position: { x: "74%", y: "35%", width: "47%" },
+          position: { x: "70%", y: "40%", width: "47%" },
         },
         {
           id: "camphoto_1932422408-52",
           src: "/polaroids/camphoto_1932422408(52).jpg",
           alt: "Middle finger Cindy",
           rotation: -6,
-          position: { x: "34%", y: "35%", width: "47%" },
+          position: { x: "30%", y: "40%", width: "47%" },
         },
         {
           id: "camphoto_1483920592-68",
           src: "/polaroids/camphoto_1483920592(68).jpg",
           alt: "MTR Cindy",
           rotation: 0,
-          position: { x: "54%", y: "70%", width: "47%" },
+          position: { x: "50%", y: "75%", width: "47%" },
         },
       ],
+    },
+    right: {
+      verticalAlign: 'center',
+      body: (
+        <>
+          <p className="small-note">
+            {"No boyfriend will ever top this :)"}
+          </p>
+        </>
+      )
     },
   },
 ];
