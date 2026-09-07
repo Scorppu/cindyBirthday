@@ -339,7 +339,7 @@ button { font: inherit; }
   aspect-ratio: 1 / 1;
   min-width: 0;
   margin: 0;
-  padding: 2%;
+  padding: 0;
   pointer-events: auto;
   appearance: none;
   -webkit-appearance: none;
@@ -361,7 +361,15 @@ button { font: inherit; }
   transform: translate(-50%, calc(-50% - 3px)) rotate(0deg);
 }
 .polaroid:focus-visible { outline: 2px solid #8d6543; outline-offset: 3px; }
-.polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.polaroid img {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  display: block;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+}
 
 .photo-lightbox {
   position: fixed;
