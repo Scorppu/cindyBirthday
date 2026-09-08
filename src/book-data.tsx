@@ -196,8 +196,8 @@ export const spreads: Spread[] = [
             scraping through years & years of newspapers.
           </p>
           <p>
-            I can still hear the spool of film spinning. Along with
-            the bright green light that flashes as the film passes over it.
+            I can still hear the spool of film spinning. Along with the bright
+            green light that flashes as the film passes over it.
           </p>
         </>
       ),
@@ -424,8 +424,15 @@ export const spreads: Spread[] = [
           id: "IMG_5794(1).JPG",
           src: "/polaroids/IMG_5794(1).JPG",
           alt: "Flower WIP 1",
-          rotation: 2,
-          position: { x: "50%", y: "60%", width: "70%" },
+          rotation: -4,
+          position: { x: "33%", y: "50%", width: "50%" },
+        },
+        {
+          id: "camphoto_1903590565(146).jpg",
+          src: "/polaroids/camphoto_1903590565(146).jpg",
+          alt: "Flower WIP 2",
+          rotation: 4,
+          position: { x: "73%", y: "55%", width: "50%" },
         },
       ],
     },
@@ -446,11 +453,11 @@ export const spreads: Spread[] = [
       ),
       images: [
         {
-          id: "camphoto_1903590565(146).jpg",
-          src: "/polaroids/camphoto_1903590565(146).jpg",
-          alt: "Flower WIP 2",
+          id: "IMG_6049(1).JPG",
+          src: "/polaroids/IMG_6049(1).JPG",
+          alt: "Flower WIP 3",
           rotation: -4,
-          position: { x: "45%", y: "60%", width: "70%" },
+          position: { x: "52%", y: "58%", width: "70%" },
         },
       ],
     },
@@ -466,9 +473,9 @@ export const spreads: Spread[] = [
       ),
       images: [
         {
-          id: "camphoto_1483920592-68",
-          src: "/polaroids/camphoto_1903590565(146).jpg",
-          alt: "Flower WIP 3",
+          id: "IMG_6056(1).JPG",
+          src: "/polaroids/IMG_6056(1).JPG",
+          alt: "Flower DONE",
           rotation: 3,
           position: { x: "52%", y: "58%", width: "70%" },
         },
@@ -550,14 +557,12 @@ export const spreads: Spread[] = [
       ],
     },
     right: {
-      verticalAlign: 'center',
+      verticalAlign: "center",
       body: (
         <>
-          <p className="small-note">
-            {"No boyfriend will ever top this :)"}
-          </p>
+          <p className="small-note">{"No boyfriend will ever top this :)"}</p>
         </>
-      )
+      ),
     },
   },
 ];
